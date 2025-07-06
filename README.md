@@ -1,10 +1,10 @@
 <img align="right" src="https://visitor-badge.laobi.icu/badge?page_id=dawissem.dawissem" />
 
 <h1 align="center">
-    <img src="https://readme-typing-svg.herokuapp.com/?font=Righteous&size=35&center=true&vCenter=true&width=500&height=70&duration=4000&lines=Hi+There!+👋;+I'm+Wissem!;Full+Stack+Developer;Welcome+to+my+Profile!" />
+    <img src="https://readme-typing-svg.herokuapp.com/?font=Righteous&size=35&center=true&vCenter=true&width=500&height=70&duration=4000&lines=Hi+There!+👋;+I'm+Wissem!;Full+Stack+Developer;AI+%26+ML+Enthusiast;Welcome+to+my+Profile!" />
 </h1>
 
-<h3 align="center">🚀 Passionate Full Stack Developer | Problem Solver | Tech Enthusiast 🚀</h3>
+<h3 align="center">🚀 Passionate Full Stack Developer | AI/ML Engineer | Problem Solver | Tech Enthusiast 🚀</h3>
 
 <div align="center">
   <img src="https://media.giphy.com/media/dWesBcTLavkZuG35MI/giphy.gif" width="600" height="300"/>
@@ -16,13 +16,14 @@
 
 <img align="right" alt="Coding" width="400" src="https://media.giphy.com/media/SWoSkN6DxTszqIKEqv/giphy.gif">
 
-- 🔭 Currently working on **E-commerce Platform with Microservices Architecture**
+- 🔭 Currently working on **E-commerce Platform with Microservices Architecture & AI Integration**
 - 🌱 Learning **Docker, DevOps, Kubernetes & Cloud Technologies**
-- 👯 Looking to collaborate on **Open Source Projects**
-- 💬 Ask me about **Java, Spring Boot, Android, Python, PHP**
+- 🤖 Exploring **Machine Learning, Deep Learning & AI Applications**
+- 👯 Looking to collaborate on **Open Source Projects & AI/ML Solutions**
+- 💬 Ask me about **Java, Spring Boot, Django, Angular, React, Python, AI/ML**
 - 📫 How to reach me: **dawissem.wm@gmail.com**
 - ⚡ Fun fact: **Code is poetry in motion! 🎭**
-- 🎯 Goal: **To build impactful software solutions**
+- 🎯 Goal: **To build impactful software solutions powered by AI**
 
 ---
 
@@ -35,7 +36,19 @@
 
 ### Frameworks & Libraries
 <div align="center">
-    <img src="https://skillicons.dev/icons?i=spring,nodejs,react,bootstrap,android" />
+    <img src="https://skillicons.dev/icons?i=spring,django,nodejs,react,angular,bootstrap,android" />
+</div>
+
+### AI/ML & Data Science
+<div align="center">
+    <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" />
+    <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" />
+    <img src="https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" />
+    <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" />
+    <img src="https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white" />
+    <img src="https://img.shields.io/badge/OpenCV-27338e?style=for-the-badge&logo=OpenCV&logoColor=white" />
+    <img src="https://img.shields.io/badge/Keras-D00000?style=for-the-badge&logo=Keras&logoColor=white" />
+    <img src="https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=Jupyter&logoColor=white" />
 </div>
 
 ### Databases & Cloud
@@ -71,6 +84,135 @@
 
 ---
 
+## 🎮 Interactive Snake Game
+
+<div align="center">
+  <h3>🐍 Play Snake Game - Eat My Contributions! 🐍</h3>
+  <p><em>Use arrow keys to control the snake</em></p>
+</div>
+
+<div align="center" id="snake-game-container">
+  <canvas id="snakeCanvas" width="400" height="400" style="border: 2px solid #58a6ff; border-radius: 10px; background-color: #0d1117;"></canvas>
+  <br>
+  <div style="margin-top: 10px;">
+    <span style="color: #58a6ff; font-weight: bold;">Score: <span id="score">0</span></span>
+    <button onclick="restartGame()" style="margin-left: 20px; padding: 5px 10px; background-color: #58a6ff; color: white; border: none; border-radius: 5px; cursor: pointer;">Restart</button>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('snakeCanvas');
+const ctx = canvas.getContext('2d');
+const scoreElement = document.getElementById('score');
+
+const gridSize = 20;
+const tileCount = canvas.width / gridSize;
+
+let snake = [
+    {x: 10, y: 10}
+];
+let food = {};
+let dx = 0;
+let dy = 0;
+let score = 0;
+
+function generateFood() {
+    food = {
+        x: Math.floor(Math.random() * tileCount),
+        y: Math.floor(Math.random() * tileCount)
+    };
+}
+
+function drawGame() {
+    clearCanvas();
+    moveSnake();
+    drawSnake();
+    drawFood();
+    checkCollision();
+    updateScore();
+}
+
+function clearCanvas() {
+    ctx.fillStyle = '#0d1117';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+function drawSnake() {
+    ctx.fillStyle = '#58a6ff';
+    snake.forEach(segment => {
+        ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 2, gridSize - 2);
+    });
+}
+
+function drawFood() {
+    ctx.fillStyle = '#f85149';
+    ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize - 2, gridSize - 2);
+}
+
+function moveSnake() {
+    const head = {x: snake[0].x + dx, y: snake[0].y + dy};
+    snake.unshift(head);
+    
+    if (head.x === food.x && head.y === food.y) {
+        score += 10;
+        generateFood();
+    } else {
+        snake.pop();
+    }
+}
+
+function checkCollision() {
+    const head = snake[0];
+    
+    if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
+        resetGame();
+    }
+    
+    for (let i = 1; i < snake.length; i++) {
+        if (head.x === snake[i].x && head.y === snake[i].y) {
+            resetGame();
+        }
+    }
+}
+
+function resetGame() {
+    snake = [{x: 10, y: 10}];
+    dx = 0;
+    dy = 0;
+    score = 0;
+    generateFood();
+}
+
+function restartGame() {
+    resetGame();
+}
+
+function updateScore() {
+    scoreElement.textContent = score;
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowUp' && dy === 0) {
+        dx = 0;
+        dy = -1;
+    } else if (e.key === 'ArrowDown' && dy === 0) {
+        dx = 0;
+        dy = 1;
+    } else if (e.key === 'ArrowLeft' && dx === 0) {
+        dx = -1;
+        dy = 0;
+    } else if (e.key === 'ArrowRight' && dx === 0) {
+        dx = 1;
+        dy = 0;
+    }
+});
+
+generateFood();
+setInterval(drawGame, 100);
+</script>
+
+---
+
 ## 📈 Contribution Graph
 
 <div align="center">
@@ -92,6 +234,19 @@
 
 ---
 
+## 🤖 AI/ML Projects Showcase
+
+<div align="center">
+  <a href="https://github.com/dawissem/ml-project">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=dawissem&repo=ml-project&theme=algolia" />
+  </a>
+  <a href="https://github.com/dawissem/ai-chatbot">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=dawissem&repo=ai-chatbot&theme=algolia" />
+  </a>
+</div>
+
+---
+
 ## 📫 Connect With Me
 
 <div align="center">
@@ -106,6 +261,9 @@
   </a>
   <a href="https://twitter.com/your_twitter" target="_blank">
     <img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" />
+  </a>
+  <a href="https://www.kaggle.com/wissem" target="_blank">
+    <img src="https://img.shields.io/badge/Kaggle-20BEFF?style=for-the-badge&logo=Kaggle&logoColor=white" />
   </a>
 </div>
 
