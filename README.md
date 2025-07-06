@@ -84,132 +84,13 @@
 
 ---
 
-## 🎮 Interactive Snake Game
+## 🐍 Animated Contribution Snake
 
 <div align="center">
-  <h3>🐍 Play Snake Game - Eat My Contributions! 🐍</h3>
-  <p><em>Use arrow keys to control the snake</em></p>
-</div>
-
-<div align="center" id="snake-game-container">
-  <canvas id="snakeCanvas" width="400" height="400" style="border: 2px solid #58a6ff; border-radius: 10px; background-color: #0d1117;"></canvas>
+  <h3>🐍 Watch the Snake Eat My Contributions! 🐍</h3>
+  <p><em>Interactive version available on my portfolio website</em></p>
   <br>
-  <div style="margin-top: 10px;">
-    <span style="color: #58a6ff; font-weight: bold;">Score: <span id="score">0</span></span>
-    <button onclick="restartGame()" style="margin-left: 20px; padding: 5px 10px; background-color: #58a6ff; color: white; border: none; border-radius: 5px; cursor: pointer;">Restart</button>
-  </div>
 </div>
-
-<script>
-const canvas = document.getElementById('snakeCanvas');
-const ctx = canvas.getContext('2d');
-const scoreElement = document.getElementById('score');
-
-const gridSize = 20;
-const tileCount = canvas.width / gridSize;
-
-let snake = [
-    {x: 10, y: 10}
-];
-let food = {};
-let dx = 0;
-let dy = 0;
-let score = 0;
-
-function generateFood() {
-    food = {
-        x: Math.floor(Math.random() * tileCount),
-        y: Math.floor(Math.random() * tileCount)
-    };
-}
-
-function drawGame() {
-    clearCanvas();
-    moveSnake();
-    drawSnake();
-    drawFood();
-    checkCollision();
-    updateScore();
-}
-
-function clearCanvas() {
-    ctx.fillStyle = '#0d1117';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-}
-
-function drawSnake() {
-    ctx.fillStyle = '#58a6ff';
-    snake.forEach(segment => {
-        ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 2, gridSize - 2);
-    });
-}
-
-function drawFood() {
-    ctx.fillStyle = '#f85149';
-    ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize - 2, gridSize - 2);
-}
-
-function moveSnake() {
-    const head = {x: snake[0].x + dx, y: snake[0].y + dy};
-    snake.unshift(head);
-    
-    if (head.x === food.x && head.y === food.y) {
-        score += 10;
-        generateFood();
-    } else {
-        snake.pop();
-    }
-}
-
-function checkCollision() {
-    const head = snake[0];
-    
-    if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
-        resetGame();
-    }
-    
-    for (let i = 1; i < snake.length; i++) {
-        if (head.x === snake[i].x && head.y === snake[i].y) {
-            resetGame();
-        }
-    }
-}
-
-function resetGame() {
-    snake = [{x: 10, y: 10}];
-    dx = 0;
-    dy = 0;
-    score = 0;
-    generateFood();
-}
-
-function restartGame() {
-    resetGame();
-}
-
-function updateScore() {
-    scoreElement.textContent = score;
-}
-
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowUp' && dy === 0) {
-        dx = 0;
-        dy = -1;
-    } else if (e.key === 'ArrowDown' && dy === 0) {
-        dx = 0;
-        dy = 1;
-    } else if (e.key === 'ArrowLeft' && dx === 0) {
-        dx = -1;
-        dy = 0;
-    } else if (e.key === 'ArrowRight' && dx === 0) {
-        dx = 1;
-        dy = 0;
-    }
-});
-
-generateFood();
-setInterval(drawGame, 100);
-</script>
 
 ---
 
@@ -217,6 +98,23 @@ setInterval(drawGame, 100);
 
 <div align="center">
   <img alt="snake eating my contributions" src="https://raw.githubusercontent.com/salesp07/salesp07/output/github-contribution-grid-snake.svg" />
+</div>
+
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/dawissem/dawissem/output/github-contribution-grid-snake-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/dawissem/dawissem/output/github-contribution-grid-snake.svg" />
+    <img alt="github-snake" src="https://raw.githubusercontent.com/dawissem/dawissem/output/github-contribution-grid-snake.svg" />
+  </picture>
+</div>
+
+<div align="center">
+  <h4>🎮 Want to play an interactive snake game?</h4>
+  <p>
+    <a href="https://dawissem.github.io/snake-game" target="_blank">
+      <img src="https://img.shields.io/badge/🐍%20Play%20Snake%20Game-FF6B6B?style=for-the-badge&logo=gamepad&logoColor=white" />
+    </a>
+  </p>
 </div>
 
 ---
